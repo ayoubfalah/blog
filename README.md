@@ -21,6 +21,13 @@ A public-facing blog application, allowing users of X Co. products to discuss ne
 ## Iteration #1:
 Create the blog application and demonstrate that you can perform CRUD operations on posts and comments.
 
+## Feedback for the first Iteration:
+The CEO of X Co. was happy with the result of the first iteration. However she forgot to discuss one thing
+with me at our first meeting. She had like the name of authors to appear beside each of their posts and 
+comments. Here is what she sketched:
+
+<img src="https://github.com/ayoubfalah/blog/blob/master/main/resources/META-INF/userinterface1.1.jpg">
+
 ## Iteration #2:
 Extending the blog application by a user model and demonstrate that you can perform CRUD operations on it.
 
