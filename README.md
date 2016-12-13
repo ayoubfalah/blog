@@ -8,6 +8,8 @@ A public-facing blog application, allowing users of X Co. products to discuss ne
 + A company administrator posts ideas on a web site related to new products or features.
 + A running user commentary appears with each posting.
 
+<img src="https://github.com/ayoubfalah/blog/blob/master/main/resources/META-INF/userinterface.jpg">
+
 ## Requirements: 
 
 + There are two types of users: the blog administrator and blog users.
