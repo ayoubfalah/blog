@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Posts</title>
+    </h:head>
+    <h:body>
+        <h3>Total # of posts #{postsController.count()}</h3>
+        <h:form>
+            <h:dataTable value="#{postsController.getAll()}" var="post">
+                <h:column>
+                    <f:facet name="header">Edit</f:facet>
+                    <h:commandLink value="Edit"
+                                   action="#{postsController.edit(post)}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Post Id</f:facet>
+                        #{post.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                        #{post.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                        #{post.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DELETE</f:facet>
+                    <h:commandLink value="Delete"
+                                   action="#{postsController.delete(post)}"></h:commandLink>
+                </h:column>                
+            </h:dataTable>
+        </h:form>
+        <br/>
+        <h:form>
+            <h:commandButton value="Add a new Post"
+                             action="add" />
+        </h:form>
+
+        <p/>
+    </h:body>
+</html>
