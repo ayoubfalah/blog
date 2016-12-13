@@ -20,3 +20,7 @@ A public-facing blog application, allowing users of X Co. products to discuss ne
 
 ## Iteration #1:
 Create the blog application and demonstrate that you can perform CRUD operations on posts and comments.
+
+## Iteration #2:
+Extending the blog application by a user model and demonstrate that you can perform CRUD operations on it.
+
