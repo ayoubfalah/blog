@@ -1,6 +1,6 @@
 # Blog Web Application
 
-## Introduction
+## Vision:
 
 A public-facing blog application, allowing users of X Co. products to discuss new products and features 
 
