@@ -17,7 +17,7 @@ import lombok.Setter;
 @RequestScoped
 public class CommentBackingBean implements Serializable
 {
-    private Integer id;
-    private String body;
+    private Integer userId;
     private Integer postId;
+    private String openion;
 }
