@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Posts</title>
+    </h:head>
+    <h:body>
+        <h3>Total # of users #{usersController.count()}</h3>
+        <h:form>
+            <h:dataTable value="#{usersController.getAll()}" var="user">
+                <h:column>
+                    <f:facet name="header">Edit</f:facet>
+                    <h:commandLink value="Edit"
+                                   action="#{usersController.edit(user)}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">User Id</f:facet>
+                        #{user.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">First Name</f:facet>
+                        #{user.fname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                        #{user.lname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DELETE</f:facet>
+                    <h:commandLink value="Delete"
+                                   action="#{usersController.delete(user)}"></h:commandLink>
+                </h:column>                
+            </h:dataTable>
+        </h:form>
+        <br/>
+        <h:form>
+            <h:commandButton value="Add a new User"
+                             action="add" />
+        </h:form>
+
+        <p/>
+    </h:body>
+</html>
