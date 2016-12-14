@@ -10,9 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,13 +24,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ayoubfalah
  */
 @Entity 
-@Table(name = "POST")
+@Table(name = "USER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p"),
-    @NamedQuery(name = "Post.findById", query = "SELECT p FROM Post p WHERE p.id = :id"),
-    @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title")})
-public class Post implements Serializable 
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByFname", query = "SELECT u FROM User u WHERE u.fname = :fname"),
+    @NamedQuery(name = "User.findByLname", query = "SELECT u FROM User u WHERE u.lname = :lname")})
+public class User implements Serializable 
 {
 
     private static final long serialVersionUID = 1L;
@@ -44,32 +42,30 @@ public class Post implements Serializable
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "Title")
-    private String title;
+    @Size(min = 1, max = 45)
+    @Column(name = "Fname")
+    private String fname;
     @Basic(optional = false)
     @NotNull
-    @Lob
-    @Size(min = 1, max = 65535)
-    @Column(name = "Description")
-    private String description;
-    @JoinColumn(name = "User_Id", referencedColumnName = "Id")
-    @ManyToOne
-    private User userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @Size(min = 1, max = 45)
+    @Column(name = "Lname")
+    private String lname;
+    @OneToMany(mappedBy = "userId")
+    private Collection<Post> postCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Comment> commentCollection;
 
-    public Post() {
+    public User() {
     }
 
-    public Post(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Post(Integer id, String title, String description) {
+    public User(Integer id, String fname, String lname) {
         this.id = id;
-        this.title = title;
-        this.description = description;
+        this.fname = fname;
+        this.lname = lname;
     }
 
     public Integer getId() {
@@ -80,28 +76,29 @@ public class Post implements Serializable
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFname() {
+        return fname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLname() {
+        return lname;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    public User getUserId() {
-        return userId;
+    @XmlTransient
+    public Collection<Post> getPostCollection() {
+        return postCollection;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setPostCollection(Collection<Post> postCollection) {
+        this.postCollection = postCollection;
     }
 
     @XmlTransient
@@ -123,10 +120,10 @@ public class Post implements Serializable
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Post)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Post other = (Post) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -135,7 +132,7 @@ public class Post implements Serializable
 
     @Override
     public String toString() {
-        return "de.softunivers.blog.models.Post[ id=" + id + " ]";
+        return "de.softunivers.blog.models.User[ id=" + id + " ]";
     }
 
 }

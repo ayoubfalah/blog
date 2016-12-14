@@ -1,12 +1,10 @@
+
 package de.softunivers.blog.models;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -21,63 +19,76 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ayoubfalah
  */
 @Entity 
-@Table(name = "COMMENT")
+@Table(name = "COMMENTS_ON")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c"),
-    @NamedQuery(name = "Comment.findById", query = "SELECT c FROM Comment c WHERE c.id = :id")})
+    @NamedQuery(name = "Comment.findByUserId", query = "SELECT c FROM Comment c WHERE c.commentPK.userId = :userId"),
+    @NamedQuery(name = "Comment.findByPostId", query = "SELECT c FROM Comment c WHERE c.commentPK.postId = :postId")})
 public class Comment implements Serializable 
 {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "Id")
-    private Integer id;
+    @EmbeddedId
+    protected CommentPK commentPK;
     @Lob
     @Size(max = 65535)
-    @Column(name = "Body")
-    private String body;
-    @JoinColumn(name = "Post_Id", referencedColumnName = "Id")
-    @ManyToOne
-    private Post postId;
+    @Column(name = "Openion")
+    private String openion;
+    @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private User user;
+    @JoinColumn(name = "Post_Id", referencedColumnName = "Id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Post post;
 
     public Comment() {
     }
 
-    public Comment(Integer id) {
-        this.id = id;
+    public Comment(CommentPK commentPK) {
+        this.commentPK = commentPK;
     }
 
-    public Integer getId() {
-        return id;
+    public Comment(int userId, int postId) {
+        this.commentPK = new CommentPK(userId, postId);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public CommentPK getCommentPK() {
+        return commentPK;
     }
 
-    public String getBody() {
-        return body;
+    public void setCommentPK(CommentPK commentPK) {
+        this.commentPK = commentPK;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public String getOpenion() {
+        return openion;
     }
 
-    public Post getPostId() {
-        return postId;
+    public void setOpenion(String openion) {
+        this.openion = openion;
     }
 
-    public void setPostId(Post postId) {
-        this.postId = postId;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (commentPK != null ? commentPK.hashCode() : 0);
         return hash;
     }
 
@@ -88,7 +99,7 @@ public class Comment implements Serializable
             return false;
         }
         Comment other = (Comment) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.commentPK == null && other.commentPK != null) || (this.commentPK != null && !this.commentPK.equals(other.commentPK))) {
             return false;
         }
         return true;
@@ -96,7 +107,7 @@ public class Comment implements Serializable
 
     @Override
     public String toString() {
-        return "de.softunivers.blog.entities.Comment[ id=" + id + " ]";
+        return "de.softunivers.blog.models.Comment[ commentPK=" + commentPK + " ]";
     }
 
 }
