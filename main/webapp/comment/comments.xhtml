@@ -16,16 +16,16 @@
                                    action="#{commentsController.edit(comment)}" />
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Post Id</f:facet>
-                        #{comment.postId.id}
+                    <f:facet name="header">User Id</f:facet>
+                        #{comment.user.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Comment Id</f:facet>
-                        #{comment.id}
+                    <f:facet name="header">Post Id</f:facet>
+                        #{comment.post.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Comment Body</f:facet>
-                        #{comment.body}
+                        #{comment.openion}
                 </h:column>
                 <h:column>
                     <f:facet name="header">DELETE</f:facet>

@@ -3,21 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Update data of #{commentBackingBean.id}</title>
+        <title>Update data of #{commentBackingBean.userId} 
+            #{commentBackingBean.postId}</title>
     </h:head>
     <h:body>
         <h:form>
             <h:panelGrid columns="2">
-                Comment Id
-                <h:outputText value="#{commentBackingBean.id}" />
-                Comment
-                <h:inputTextarea value="#{commentBackingBean.body}" />
+                User Id
+                <h:outputText value="#{commentBackingBean.userId}" />
+                Post Id
+                <h:outputText value="#{commentBackingBean.postId}" />
+                Openion
+                <h:inputTextarea value="#{commentBackingBean.openion}" />
                 <h:panelGroup />
                 <h:commandButton value="SAVE"
                                  action="#{commentsController.save()}" />                
             </h:panelGrid>
         </h:form>
-        
-       
+
+
     </h:body>
 </html>
