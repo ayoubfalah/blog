@@ -50,8 +50,8 @@ public class CommentsController implements Serializable
         Comment comment = new Comment();
         Integer postId = commentBackingBean.getPostId();
         Post post = postFacade.find(postId);
-        comment.setPostId(post);
-        comment.setBody(commentBackingBean.getBody());
+        comment.setPost(post);
+        comment.setOpenion(commentBackingBean.getOpenion());
         
         commentFacade.create(comment);
         
@@ -60,16 +60,21 @@ public class CommentsController implements Serializable
     
     public String edit(Comment comment)
     {
-        commentBackingBean.setId(comment.getId());
-        commentBackingBean.setBody(comment.getBody());
+        int userId = comment.getCommentPK().getUserId();
+        int postId = comment.getCommentPK().getPostId();
+        commentBackingBean.setUserId(userId);
+        commentBackingBean.setPostId(postId);
+        commentBackingBean.setOpenion(comment.getOpenion());
         
         return "update";
     }
     
     public String save()
     {
-        Comment comment = new Comment(commentBackingBean.getId());
-        comment.setBody(commentBackingBean.getBody());
+        Integer userId = commentBackingBean.getUserId();
+        Integer postId = commentBackingBean.getPostId();
+        Comment comment = new Comment(userId, postId);
+        comment.setOpenion(commentBackingBean.getOpenion());
         
         commentFacade.edit(comment);
         
