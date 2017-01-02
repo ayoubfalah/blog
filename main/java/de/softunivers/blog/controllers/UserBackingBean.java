@@ -2,7 +2,7 @@
 package de.softunivers.blog.controllers;
 
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Named
-@RequestScoped
+@SessionScoped
 public class UserBackingBean implements Serializable
 {
     private int id;
