@@ -64,8 +64,9 @@ public class CommentsController implements Serializable
     
     public String edit(Comment comment)
     {
-        int userId = comment.getCommentPK().getUserId();
-        int postId = comment.getCommentPK().getPostId();
+        CommentPK commentPK = comment.getCommentPK();
+        int userId = commentPK.getUserId();
+        int postId = commentPK.getPostId();
         commentBackingBean.setUserId(userId);
         commentBackingBean.setPostId(postId);
         commentBackingBean.setOpenion(comment.getOpenion());
