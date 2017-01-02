@@ -4,6 +4,7 @@ package de.softunivers.blog.controllers;
 import de.softunivers.blog.ejbs.CommentFacade;
 import de.softunivers.blog.ejbs.PostFacade;
 import de.softunivers.blog.models.Comment;
+import de.softunivers.blog.models.CommentPK;
 import de.softunivers.blog.models.Post;
 import java.io.Serializable;
 import java.util.List;
@@ -47,11 +48,14 @@ public class CommentsController implements Serializable
     
     public String add()
     {
-        Comment comment = new Comment();
+        CommentPK commentPK = new CommentPK();
+        Integer userId = commentBackingBean.getUserId();
+        commentPK.setUserId(userId);
         Integer postId = commentBackingBean.getPostId();
-        Post post = postFacade.find(postId);
-        comment.setPost(post);
-        comment.setOpenion(commentBackingBean.getOpenion());
+        commentPK.setPostId(postId);
+        Comment comment = new Comment(commentPK);
+        String openion = commentBackingBean.getOpenion();
+        comment.setOpenion(openion);
         
         commentFacade.create(comment);
         

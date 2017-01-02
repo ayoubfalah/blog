@@ -32,7 +32,7 @@ public class Comment implements Serializable
     @EmbeddedId
     protected CommentPK commentPK;
     @Lob
-    @Size(max = 65535)
+    @Size(min = 1, max = 65535)
     @Column(name = "Openion")
     private String openion;
     @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)
