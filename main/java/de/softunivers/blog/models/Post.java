@@ -44,13 +44,13 @@ public class Post implements Serializable
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "The post title cannot be blank")
     @Column(name = "Title")
     private String title;
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 65535, message = "The post description cannot be blank")
     @Column(name = "Description")
     private String description;
     @JoinColumn(name = "User_Id", referencedColumnName = "Id")

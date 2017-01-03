@@ -7,11 +7,14 @@
     </h:head>
     <body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 Title
-                <h:inputText value="#{postBackingBean.title}" />
+                <h:inputText value="#{postBackingBean.title}" id="title" />
+                <h:message for="title" style="color: red" />
                 Description
-                <h:inputTextarea value="#{postBackingBean.description}" />
+                <h:inputTextarea value="#{postBackingBean.description}" 
+                                 id="description"/>
+                <h:message for="description" style="color: red" />
                 <h:panelGroup />
                 <h:commandButton value="ADD"
                                  action="posts"
