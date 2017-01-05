@@ -7,11 +7,13 @@
     </h:head>
     <body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 First Name
-                <h:inputText value="#{userBackingBean.fname}" />
+                <h:inputText value="#{userBackingBean.fname}" id="fname"/>
+                <h:message for="fname" style="color: red" />
                 Last Name
-                <h:inputText value="#{userBackingBean.lname}" />
+                <h:inputText value="#{userBackingBean.lname}" id="lname"/>
+                <h:message for="lname" style="color: red" />
                 <h:panelGroup />
                 <h:commandButton value="ADD"
                                  action="users"

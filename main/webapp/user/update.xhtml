@@ -7,13 +7,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 User Id
-                <h:outputText value="#{userBackingBean.id}" />
+                <h:outputText value="#{userBackingBean.id}" id="userId"/>
+                <h:message for="userId" style="color: red" />
                 First Name
-                <h:inputText value="#{userBackingBean.fname}" />
+                <h:inputText value="#{userBackingBean.fname}" id="fname"/>
+                <h:message for="fname" style="color: red" />
                 Last Name
-                <h:inputText value="#{userBackingBean.fname}" />
+                <h:inputText value="#{userBackingBean.lname}" id="lname"/>
+                <h:message for="lname" style="color: red" />
                 <h:panelGroup />
                 <h:commandButton value="SAVE"
                                  action="#{usersController.save()}" />                

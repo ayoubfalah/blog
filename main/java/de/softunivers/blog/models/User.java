@@ -42,12 +42,12 @@ public class User implements Serializable
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "The first name cannot be blank")
     @Column(name = "Fname")
     private String fname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 45, message = "The last name cannot be blank")
     @Column(name = "Lname")
     private String lname;
     @OneToMany(mappedBy = "userId")
