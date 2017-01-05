@@ -32,7 +32,7 @@ public class Comment implements Serializable
     @EmbeddedId
     protected CommentPK commentPK;
     @Lob
-    @Size(min = 1, max = 65535)
+    @Size(min = 1, max = 65535, message = "The comment cannot be blank")
     @Column(name = "Openion")
     private String openion;
     @JoinColumn(name = "User_Id", referencedColumnName = "Id", insertable = false, updatable = false)

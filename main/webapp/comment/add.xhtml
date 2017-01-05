@@ -7,13 +7,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 Post Id
-                <h:inputText value="#{commentBackingBean.postId}" />
+                <h:inputText value="#{commentBackingBean.postId}" id="postId"/>
+                <h:message for="postId" style="color: red" />
                 User Id
-                <h:inputText value="#{commentBackingBean.userId}" />
+                <h:inputText value="#{commentBackingBean.userId}" id="userId"/>
+                <h:message for="userId" style="color:red" />
                 Openion
-                <h:inputTextarea value="#{commentBackingBean.openion}" />
+                <h:inputTextarea value="#{commentBackingBean.openion}" id="openion"/>
+                <h:message for="openion" style="color: red" />
                 <h:panelGroup />
                 <h:commandButton value="ADD"
                                  action="#{commentsController.add()}" />                

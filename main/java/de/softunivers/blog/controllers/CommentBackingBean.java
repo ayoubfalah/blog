@@ -1,9 +1,10 @@
 
 package de.softunivers.blog.controllers;
 
-import java.io.Serializable;
+import de.softunivers.blog.models.Comment;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +16,10 @@ import lombok.Setter;
 @Setter
 @Named
 @SessionScoped
-public class CommentBackingBean implements Serializable
+public class CommentBackingBean extends Comment
 {
+    @NotNull(message = "The comment must have a user id")
     private Integer userId;
+    @NotNull(message = "The comment must have a post id")
     private Integer postId;
-    private String openion;
 }
