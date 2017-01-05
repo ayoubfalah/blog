@@ -31,3 +31,8 @@ comments. Here is what she sketched:
 ## Iteration #2:
 Extending the blog application by a user model and demonstrate that you can perform CRUD operations on it.
 
+## Iteration #3:
+Adding data validations:
++ User: The first name and last name can not be blank
++ Post: The title and description can not be blank
++ Comment: Each comment must have a user id and post id
