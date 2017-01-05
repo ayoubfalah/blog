@@ -7,13 +7,16 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 Post Id
-                <h:outputText value="#{postBackingBean.id}" />
+                <h:outputText value="#{postBackingBean.id}" id="postId"/>
+                <h:message for="postId" style="color: red" />
                 Post Title
-                <h:inputText value="#{postBackingBean.title}" />
+                <h:inputText value="#{postBackingBean.title}" id="title" />
+                <h:message for="title" style="color: red" />
                 Post Description
-                <h:inputTextarea value="#{postBackingBean.description}" />
+                <h:inputTextarea value="#{postBackingBean.description}" id="description"/>
+                <h:message for="description" style="color: red" />
                 <h:panelGroup />
                 <h:commandButton value="SAVE"
                                  action="#{postsController.save()}" />                
